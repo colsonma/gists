@@ -1,0 +1,217 @@
+= EMC Capabilities Matrix =
+ 
+This graph is to allocate Systems Engineering resources to issues in MidMarket Districts.
+ 
+image::http://www.oneneck.com/filesimages/blog/federation-logo-large.png[]
+ 
+//hide
+//setup
+//graph
+ 
+[source,cypher]
+ 
+----
+ 
+//Districts
+CREATE (elliott_district{name:'Elliott District'})
+CREATE (higginbotham_district{name:'Higginbotham District'})
+CREATE (bogacz_district{name:'Bogacz District'})
+ 
+ 
+//Divisions
+CREATE (CTD{name:'Core Technologies Division'})
+CREATE (ETD{name:'Emerging Technologies Division'})
+CREATE (DPS{name:'Data Protection Solutions'})
+ 
+ 
+//Engineers
+CREATE (david_schauer{name:'David Schauer'})
+CREATE (tyler_gates{name:'Tyler Gates'})
+CREATE (robert_weigel{name:'Robert Weigel'})
+CREATE (aaron_buley{name:'Aaron Buley'})
+CREATE (javed_shareef{name:'Javed Shareef'})
+CREATE (brian_carpenter{name:'Brian Carpenter'})
+CREATE (trevor_starnes{name:'Trevor Starnes'})
+ 
+ 
+//Specialist Engineers
+CREATE (david_ursone{name:'David Ursone'})
+CREATE (mike_mowers{name:'Mike Mowers'})
+CREATE (brad_shive{name:'Brad Shive'})
+CREATE (jason_huff{name:'Jason Huff'})
+CREATE (kit_machen{name:'Kit Machen'})
+CREATE (eric_jarrell{name:'Eric Jarrell'})
+CREATE (craig_allen{name:'Craig Allen'})
+CREATE (josh_petty{name:'Josh Petty'})
+CREATE (graham_thornton{name:'Graham Thornton'})
+ 
+ 
+//Engineer Titles
+CREATE (GSAP_SE{name:'GSAP Systems Engineer'})
+CREATE (AssocI_SE{name:'Associate I Systems Engineer'})
+CREATE (AssocII_SE{name:'Associate II Systems Engineer'})
+CREATE (Systems_SE{name:'Systems Engineer'})
+CREATE (Senior_SE{name:'Sr. Systems Engineer'})
+CREATE (Advisory_SE{name:'Advisory Systems Engineer'})
+CREATE (Principal_SE{name:'Principal Systems Engineer'})
+CREATE (Manager_SE{name:'Systems Engineer Manager'})
+ 
+ 
+//Engineer Types
+CREATE (Account_SE{name:'Account SE'})
+CREATE (Territory_SE{name:'Territory SE'})
+CREATE (vSpecialist_SE{name:'VMware Specialist SE'})
+CREATE (mSpecialist_SE{name:'Microsoft Specialist SE'})
+CREATE (oSpecialist_SE{name:'Oracle Specialist SE'})
+CREATE (ETD_SE{name:'ETD Specialist SE'})
+CREATE (Flash_SE{name:'Flash Specialist SE'})
+CREATE (EMSD_SE{name:'EMSD Specialist SE'})
+CREATE (Isilon_SE{name:'Isilon Specialist SE'})
+CREATE (DPS_SE{name:'DPS Specialist SE'})
+ 
+ 
+//Minors
+CREATE (CloudDevOps{name:'Cloud & Dev Ops'})
+CREATE (DataFabrics{name:'Data Fabrics'})
+CREATE (DataProtection{name:'Data Protection Solutions'})
+CREATE (EMSD{name:'Enterprise & Midrange Storage Division'})
+CREATE (Flash{name:'Flash'})
+CREATE (Isilon_Minor{name:'Isilon'})
+CREATE (Microsoft{name:'Microsoft'})
+CREATE (SAP{name:'SAP'})
+CREATE (Oracle{name:'Oracle'})
+CREATE (SoftwareDefined{name:'Software Defined Storage'})
+ 
+ 
+//CTD Technologies
+CREATE (VMAX{name:'VMAX'})
+CREATE (VNX{name:'VNX'})
+CREATE (XtremIO{name:'XtremIO'})
+ 
+ 
+//ETD Technologies
+CREATE (Isilon{name:'Isilon'})
+CREATE (ScaleIO{name:'ScaleIO'})
+CREATE (ViPR_Cont{name:'ViPR Controller'})
+CREATE (ViPR_SRM{name:'ViPR SRM'})
+CREATE (ViPR_MNR{name:'ViPR M&R'})
+CREATE (ECS_Cont{name:'ECS Controller'})
+CREATE (ECS{name:'ECS - Elastic Cloud Storage'})
+CREATE (ECI{name:'ECI - Elastic Cloud Infrastructure'})
+CREATE (XtremSF{name:'XtremSF - Server Flash'})
+CREATE (XtremSW{name:'XtremSW - Cache Software'})
+ 
+ 
+//DPS Technologies
+CREATE (VPLEX{name:'VPLEX'})
+CREATE (RecoverPoint{name:'RecoverPoint'})
+CREATE (DataDomain{name:'Data Domain'})
+CREATE (Avamar{name:'Avamar'})
+CREATE (Syncplicity{name:'Syncplicity'})
+CREATE (Mozy{name:'Mozy'})
+CREATE (Networker{name:'Networker'})
+ 
+ 
+//Solutions
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+//Engineers to Titles
+CREATE (tyler_gates)-[:SE_LEVEL]->(GSAP_SE)
+CREATE (david_schauer)-[:SE_LEVEL]->(AssocII_SE)
+CREATE (robert_weigel)-[:SE_LEVEL]->(Systems_SE)
+CREATE (aaron_buley)-[:SE_LEVEL]->(Senior_SE)
+CREATE (javed_shareef)-[:SE_LEVEL]->(Advisory_SE)
+CREATE (brian_carpenter)-[:SE_LEVEL]->(Advisory_SE)
+CREATE (trevor_starnes)-[:SE_LEVEL]->(Manager_SE)
+ 
+ 
+//Specialists to Titles
+ 
+ 
+ 
+//Engineers to Types
+CREATE (tyler_gates)-[:SE_TYPE]->(Territory_SE)
+CREATE (david_schauer)-[:SE_TYPE]->(Territory_SE)
+CREATE (robert_weigel)-[:SE_TYPE]->(Account_SE)
+CREATE (aaron_buley)-[:SE_TYPE]->(Account_SE)
+CREATE (javed_shareef)-[:SE_TYPE]->(Account_SE)
+CREATE (brian_carpenter)-[:SE_TYPE]->(Account_SE)
+ 
+ 
+//Specialists to Types
+CREATE (david_ursone)-[:SE_TYPE]->(DPS_SE)
+CREATE (mike_mowers)-[:SE_TYPE]->(DPS_SE)
+CREATE (brad_shive)-[:SE_TYPE]->(vSpecialist_SE)
+CREATE (jason_huff)-[:SE_TYPE]->(ETD_SE)
+CREATE (kit_machen)-[:SE_TYPE]->(Isilon_SE)
+CREATE (eric_jarrell)-[:SE_TYPE]->(Isilon_SE)
+CREATE (craig_allen)-[:SE_TYPE]->(mSpecialist_SE)
+CREATE (josh_petty)-[:SE_TYPE]->(Flash_SE)
+CREATE (graham_thornton)-[:SE_TYPE]->(oSpecialist_SE)
+ 
+ 
+//Engineers to Minors
+CREATE (david_schauer)-[:HAS_MINOR]->(SoftwareDefined)
+CREATE (robert_weigel)-[:HAS_MINOR]->(Flash)
+CREATE (aaron_buley)-[:HAS_MINOR]->(EMSD)
+CREATE (javed_shareef)-[:HAS_MINOR]->(DataFabrics)
+CREATE (brian_carpenter)-[:HAS_MINOR]->(DataFabrics)
+CREATE (trevor_starnes)-[:HAS_MINOR]->(SoftwareDefined) 
+ 
+ 
+//Specialists to Minors
+ 
+ 
+ 
+//Engineers to Districts
+CREATE (tyler_gates)-[:IN_DISTRICT]->(higginbotham_district)
+CREATE (david_schauer)-[:IN_DISTRICT]->(elliott_district)
+CREATE (robert_weigel)-[:IN_DISTRICT]->(bogacz_district)
+CREATE (aaron_buley)-[:IN_DISTRICT]->(bogacz_district)
+CREATE (javed_shareef)-[:IN_DISTRICT]->(higginbotham_district)
+CREATE (brian_carpenter)-[:IN_DISTRICT]->(bogacz_district)
+ 
+ 
+//Specialists to Districts
+CREATE (david_ursone)-[:IN_DISTRICT]->(higginbotham_district)
+CREATE (mike_mowers)-[:IN_DISTRICT]->(bogacz_district)
+CREATE (brad_shive)-[:IN_DISTRICT]->(higginbotham_district)
+CREATE (jason_huff)-[:IN_DISTRICT]->(higginbotham_district)
+CREATE (kit_machen)-[:IN_DISTRICT]->(bogacz_district)
+CREATE (eric_jarrell)-[:IN_DISTRICT]->(higginbotham_district)
+CREATE (craig_allen)-[:IN_DISTRICT]->(bogacz_district)
+CREATE (josh_petty)-[:IN_DISTRICT]->(bogacz_district)
+CREATE (graham_thornton)-[:IN_DISTRICT]->(bogacz_district)
+ 
+ 
+//Specialists to Divisions
+ 
+ 
+ 
+//Minors to Divisions
+ 
+ 
+ 
+//Specialists to Technologies
+ 
+ 
+ 
+//Minors to Technologies
+ 
+ 
+ 
+ 
+----
+ 
+ 
